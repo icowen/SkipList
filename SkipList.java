@@ -394,7 +394,7 @@ public class SkipList<E> implements List<E>
         return this.count;
     }
 
-    public static boolean testSize() { 
+    public static boolean testSize() {
 
         int testListSize;
         int randInt;
@@ -483,6 +483,7 @@ public class SkipList<E> implements List<E>
         // adds the number one to the testList in index 0
         testList.add(1);
 
+
         // returns true if the value at index 0 equals 1
         if(testList.get(0) == 1) {
             return true;
@@ -513,14 +514,14 @@ public class SkipList<E> implements List<E>
             testList.add(i);
         }
 
-        // creates a random index from 0-100
-        int randomQuantile = (int)Math.random() * 101;
+        // creates a random index from 0-1 with 2 decimal places
+        double randomQuantile = Math.round(Math.random()*100.0)/100.0;
 
         // gets the value using the random index
         int value = testList.getQuantile(randomQuantile);
 
         // checks to see if the value is equal to the quantile amount since they should be the same
-        if(value == randomQuantile) {
+        if(value == randomQuantile*100) {
             return true;
         } else {
             return false;

@@ -358,11 +358,7 @@ public class SkipList<E> implements List<E>
 
     // Group 3
     public boolean isEmpty() {
-    	if (count == 0){
-    		return true;
-    	} else {
-    		return false;
-    	}
+    	return count == 0;
     }
 
     public static boolean testIsEmpty() {
@@ -383,11 +379,7 @@ public class SkipList<E> implements List<E>
        *Since the test list is populated, isEmpty() will return false, but since
     	 *we are looking for the opposite, the if is true and should return true
        */
-      if (!testList.isEmpty()){
-    		return true;
-    	} else{
-    		return false;
-    	}
+      return !testList.isEmpty();
     }
 
     public int size() {
@@ -396,12 +388,9 @@ public class SkipList<E> implements List<E>
 
     public static boolean testSize() {
 
-        int testListSize;
         int randInt;
 
         Random rand = new Random();
-
-        boolean test;
 
         // Creates a new list
         SkipList<Integer> testList = new SkipList<Integer>();
@@ -414,16 +403,8 @@ public class SkipList<E> implements List<E>
             testList.add(1);
         }
 
-        // Find list size according to .size() method
-        testListSize = testList.size();
-
-        // Compare result
-        if(testListSize == randInt){
-            test = true;
-        } else {
-            test = false;
-        }
-        return test;
+        // Find list size according to .size() method. Should be randInt.
+        return testList.size ()== randInt;
     }
 
    public void clear() {
@@ -449,11 +430,7 @@ public class SkipList<E> implements List<E>
         testList.clear();
 
         // since clear has been called, the testList should be empty, which is what isEmpty() checks
-        if(testList.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+         return testList.isEmpty();
     }
 
     public E get(int index) {
@@ -470,8 +447,10 @@ public class SkipList<E> implements List<E>
             for (int i = 0; i < index; i++){
                 pointer = pointer.next(0);
             }
+
             /*return the value of the pointer after it has been moved to the desired index in
-             *the collection*/
+             *the collection
+             */
             return pointer.value();
         }
     }
@@ -483,13 +462,8 @@ public class SkipList<E> implements List<E>
         // adds the number one to the testList in index 0
         testList.add(1);
 
-
         // returns true if the value at index 0 equals 1
-        if(testList.get(0) == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return testList.get(0) == 1;
     }
 
     public E getQuantile(double quantile) {
@@ -507,10 +481,10 @@ public class SkipList<E> implements List<E>
 
     public static boolean testGetQuantile() {
         // Creates a new list
-        SkipList<Double> testList = new SkipList<Double>();
+        SkipList<Integer> testList = new SkipList<Integer>();
 
         // Prepopulates the list from 0.0 - 100.0
-        for(double i = 0.0; i <= 100; i++) {
+        for(int i = 0; i <= 100; i++) {
             testList.add(i);
         }
 
@@ -518,14 +492,10 @@ public class SkipList<E> implements List<E>
         double randomQuantile = Math.round(Math.random()*100.0)/100.0;
 
         // gets the value using the random index
-        double value = testList.getQuantile(randomQuantile);
+        int value = testList.getQuantile(randomQuantile);
 
         // checks to see if the value is equal to the quantile amount since they should be the same
-        if(value == Math.round(randomQuantile*100)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (value == Math.round(randomQuantile*100));
     }
 
     // Group 4

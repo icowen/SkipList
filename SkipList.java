@@ -368,20 +368,20 @@ public class SkipList<E> implements List<E>
     public static boolean testIsEmpty() {
     	SkipList<Integer> testList = new SkipList<Integer>();
     	//create new list
-    	boolean newTestList = testList.isEmpty();
 
-    	//should return true since the list is empty
-    	if (newTestList){
-    		return true;
+    	//should skip since the list is empty
+    	if (!testList.isEmpty()) {
+    		return false;
     	}
 
     	//add two elements to list so the list is now populated
     	testList.add(3);
     	testList.add(4);
 
-    	/*checks to see if the testList is has any values. Asks for the opposite.
-       *Since the test list is populated, itEmpty() will return false, but since
-    	 *we are looking for the opposite, the if-else should return true
+    	/*
+       *Checks to see if the testList has any values. If statement uses the opposite.
+       *Since the test list is populated, isEmpty() will return false, but since
+    	 *we are looking for the opposite, the if is true and should return true
        */
       if (!testList.isEmpty()){
     		return true;
@@ -507,21 +507,21 @@ public class SkipList<E> implements List<E>
 
     public static boolean testGetQuantile() {
         // Creates a new list
-        SkipList<Integer> testList = new SkipList<Integer>();
+        SkipList<Double> testList = new SkipList<Double>();
 
-        // Prepopulates the list from 0 - 100
-        for(int i = 0; i <= 100; i++) {
+        // Prepopulates the list from 0.0 - 100.0
+        for(double i = 0.0; i <= 100; i++) {
             testList.add(i);
         }
 
-        // creates a random index from 0-1 with 2 decimal places
+        // creates a random index from 0.0-1.0 with 2 decimal places
         double randomQuantile = Math.round(Math.random()*100.0)/100.0;
 
         // gets the value using the random index
-        int value = testList.getQuantile(randomQuantile);
+        double value = testList.getQuantile(randomQuantile);
 
         // checks to see if the value is equal to the quantile amount since they should be the same
-        if(value == randomQuantile*100) {
+        if(value == Math.round(randomQuantile*100)) {
             return true;
         } else {
             return false;

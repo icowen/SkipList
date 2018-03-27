@@ -389,7 +389,6 @@ public class SkipList<E> implements List<E>
     public static boolean testSize() {
 
         int randInt;
-
         Random rand = new Random();
 
         // Creates a new list
@@ -404,7 +403,7 @@ public class SkipList<E> implements List<E>
         }
 
         // Find list size according to .size() method. Should be randInt.
-        return testList.size ()== randInt;
+        return testList.size() == randInt;
     }
 
    public void clear() {
@@ -429,7 +428,7 @@ public class SkipList<E> implements List<E>
         // removes those values from the testList
         testList.clear();
 
-        // since clear has been called, the testList should be empty, which is what isEmpty() checks
+        // Checks if testList is empty
          return testList.isEmpty();
     }
 
@@ -439,7 +438,8 @@ public class SkipList<E> implements List<E>
 
         /* if the requested index is less than zero, or if the requested index is
          * greater than the size of collection an exception is thrown and the output prints
-         * "chosen index is out of bounds"*/
+         * "chosen index is out of bounds"
+         */
         if ( index < 0 || index >= this.count ) {
             throw new IndexOutOfBoundsException ("chosen index is out of bounds");
         } else {
@@ -467,7 +467,7 @@ public class SkipList<E> implements List<E>
     }
 
     public E getQuantile(double quantile) {
-        // checks to see if the value is within the acceptable range 0 <= x <= 1
+        // checks to see if the value is within the acceptable range 0 <= x < 1
         if(quantile >= 1 | quantile < 0) {
             throw new IndexOutOfBoundsException("Quantile is out of range");
         }
@@ -483,18 +483,18 @@ public class SkipList<E> implements List<E>
         // Creates a new list
         SkipList<Integer> testList = new SkipList<Integer>();
 
-        // Prepopulates the list from 0.0 - 100.0
-        for(int i = 0; i <= 100; i++) {
+        // Prepopulates the list from 0 - 100, so index = quantile*100
+        for(int i = 0; i < 100; i++) {
             testList.add(i);
         }
 
-        // creates a random index from 0.0-1.0 with 2 decimal places
+        // creates a random index from 0.00-1.00 with 2 decimal places
         double randomQuantile = Math.round(Math.random()*100.0)/100.0;
 
-        // gets the value using the random index
+        // gets the value at the random quantile
         int value = testList.getQuantile(randomQuantile);
 
-        // checks to see if the value is equal to the quantile amount since they should be the same
+        // checks to see if the value is equal to the quantile amount
         return (value == Math.round(randomQuantile*100));
     }
 
